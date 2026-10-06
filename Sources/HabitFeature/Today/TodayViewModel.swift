@@ -49,4 +49,8 @@ public final class TodayViewModel {
             errorMessage = "Değişiklik kaydedilemedi."
         }
     }
+    
+    public func didAdd(_ item: HabitItem) {
+        habits.append(item)
+    }
 }

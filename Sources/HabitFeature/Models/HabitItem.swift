@@ -12,6 +12,16 @@ public enum HabitColor: String, Codable, CaseIterable, Sendable {
         case .red:    Color(red: 0.784, green: 0.118, blue: 0.302)
         }
     }
+    
+    public var title: String {
+        switch self {
+        case .green: "Yeşil"
+        case .orange: "Turuncu"
+        case .blue: "Mavi"
+        case .purple: "Mor"
+        case .red: "Kırmızı"
+        }
+    }
 }
 
 public struct HabitItem: Identifiable, Equatable, Codable, Sendable {

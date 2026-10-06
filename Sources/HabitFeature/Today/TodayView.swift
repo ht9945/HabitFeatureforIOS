@@ -50,15 +50,27 @@ public struct TodayView: View {
     }
 
     private var header: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Text(Date.now.formatted(.dateTime.day().month(.wide).weekday(.wide)))
-                .font(.subheadline.weight(.bold))
-                .foregroundStyle(theme.textSecondary)
-            Text("Bugün")
-                .font(.system(size: 34, weight: .heavy, design: .rounded))
-                .foregroundStyle(theme.textPrimary)
+        HStack(alignment: .bottom) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(Date.now.formatted(.dateTime.day().month(.wide).weekday(.wide)))
+                    .font(.subheadline.weight(.bold))
+                    .foregroundStyle(theme.textSecondary)
+                Text("Bugün")
+                    .font(.system(size: 34, weight: .heavy, design: .rounded))
+                    .foregroundStyle(theme.textPrimary)
+            }
+            Spacer()
+            Button(action: onAdd) {
+                Image(systemName: "plus")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundStyle(.white)
+                    .frame(width: 44, height: 44)
+                    .background(theme.accent, in: Circle())
+            }
+            .accessibilityLabel("Alışkanlık ekle")
         }
     }
+    
 
     private var summaryCard: some View {
         HStack(spacing: 18) {
