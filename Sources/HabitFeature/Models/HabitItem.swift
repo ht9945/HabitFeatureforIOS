@@ -1,18 +1,19 @@
 import SwiftUI
+import UIKit
 
 public enum HabitColor: String, Codable, CaseIterable, Sendable {
     case green, orange, blue, purple, red
 
     public var color: Color {
         switch self {
-        case .green:  Color(red: 0.031, green: 0.498, blue: 0.357)
-        case .orange: Color(red: 0.761, green: 0.255, blue: 0.047)
-        case .blue:   Color(red: 0.114, green: 0.373, blue: 0.820)
-        case .purple: Color(red: 0.486, green: 0.227, blue: 0.929)
-        case .red:    Color(red: 0.784, green: 0.118, blue: 0.302)
+        case .green:  Color(lightHex: 0x087F5B, darkHex: 0x0E9F6E)
+        case .orange: Color(lightHex: 0xC2410C, darkHex: 0xEA580C)
+        case .blue:   Color(lightHex: 0x1D5FD1, darkHex: 0x3B82F6)
+        case .purple: Color(lightHex: 0x7C3AED, darkHex: 0x8B5CF6)
+        case .red:    Color(lightHex: 0xC81E4D, darkHex: 0xE11D48)
         }
     }
-    
+
     public var title: String {
         switch self {
         case .green: "Yeşil"
@@ -21,6 +22,26 @@ public enum HabitColor: String, Codable, CaseIterable, Sendable {
         case .purple: "Mor"
         case .red: "Kırmızı"
         }
+    }
+}
+
+extension Color {
+    /// Açık ve koyu temada farklı görünen renk.
+    init(lightHex: UInt32, darkHex: UInt32) {
+        self.init(UIColor { traits in
+            UIColor(hex: traits.userInterfaceStyle == .dark ? darkHex : lightHex)
+        })
+    }
+}
+
+extension UIColor {
+    convenience init(hex: UInt32) {
+        self.init(
+            red: CGFloat((hex >> 16) & 0xFF) / 255,
+            green: CGFloat((hex >> 8) & 0xFF) / 255,
+            blue: CGFloat(hex & 0xFF) / 255,
+            alpha: 1
+        )
     }
 }
 

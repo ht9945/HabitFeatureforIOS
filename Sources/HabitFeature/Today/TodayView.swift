@@ -118,3 +118,7 @@ public struct TodayView: View {
 #Preview("Boş") {
     TodayView(viewModel: TodayViewModel(provider: MockHabitProvider(habits: [])))
 }
+#Preview("Koyu") {
+    TodayView(viewModel: TodayViewModel(provider: MockHabitProvider()))
+        .preferredColorScheme(.dark)
+}
