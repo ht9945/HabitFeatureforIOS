@@ -6,9 +6,15 @@ public struct TodayView: View {
     @State private var viewModel: TodayViewModel
     private let onAdd: () -> Void
 
-    public init(viewModel: TodayViewModel, onAdd: @escaping () -> Void = {}) {
+    private let onSelect: (HabitItem) -> Void
+
+    
+    public init(viewModel: TodayViewModel,
+                onAdd: @escaping () -> Void = {},
+                onSelect: @escaping (HabitItem) -> Void = { _ in }) {
         _viewModel = State(initialValue: viewModel)
         self.onAdd = onAdd
+        self.onSelect = onSelect
     }
 
     public var body: some View {
@@ -30,7 +36,8 @@ public struct TodayView: View {
                                     get: { habit.isDone },
                                     set: { _ in Task { await viewModel.toggle(habit.id) } }
                                 )
-                            )
+                            ).contentShape(Rectangle())
+                            .onTapGesture { onSelect(habit) }
                         }
                     }
                 }

@@ -75,3 +75,15 @@ extension MockHabitProvider: StatsProviding {
         )
     }
 }
+extension MockHabitProvider: HabitDetailProviding {
+    public func loadDetail(for id: HabitItem.ID) async throws -> HabitDetail {
+        let streak = habits.first(where: { $0.id == id })?.streak ?? 0
+        let labels = ["Pt", "Sa", "Ça", "Pe", "Cu", "Ct", "Pz"]
+        let done = [true, true, true, false, true, true, false]
+        return HabitDetail(
+            bestStreak: max(streak, 21),
+            totalDays: 86,
+            week: zip(labels, done).map { WeekDayStatus(label: $0, isDone: $1) }
+        )
+    }
+}

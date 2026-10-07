@@ -24,7 +24,7 @@ public enum HabitColor: String, Codable, CaseIterable, Sendable {
     }
 }
 
-public struct HabitItem: Identifiable, Equatable, Codable, Sendable {
+public struct HabitItem: Identifiable, Equatable, Hashable, Codable, Sendable {
     public let id: UUID
     public var title: String
     public var subtitle: String

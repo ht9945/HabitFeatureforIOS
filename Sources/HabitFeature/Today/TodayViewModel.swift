@@ -53,4 +53,9 @@ public final class TodayViewModel {
     public func didAdd(_ item: HabitItem) {
         habits.append(item)
     }
+    public func setDone(_ id: HabitItem.ID, to isDone: Bool) {
+        if let index = habits.firstIndex(where: { $0.id == id }) {
+            habits[index].isDone = isDone
+        }
+    }
 }
