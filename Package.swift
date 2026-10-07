@@ -8,7 +8,7 @@ let package = Package(
         .library(name: "HabitFeature", targets: ["HabitFeature"])
     ],
     dependencies: [
-        url: "https://github.com/ht9945/DesignKitForIOS.git", from: "0.5.0")
+        .package(url: "https://github.com/ht9945/DesignKitForIOS.git", from: "0.5.0")
     ],
     targets: [
         .target(
